@@ -4,7 +4,7 @@ node{
          git 'https://github.com/zafar90/java-groovy-docker.git'          
       }
       stage('Build'){
-         // Get maven home path and build
+         // Get maven home path and build dd
          //def mvnHome =  tool name: 'Maven-3.0.5-17', type: 'Apache'   
          sh "/usr/share/maven/bin/mvn package -Dmaven.test.skip=true"
       }       
