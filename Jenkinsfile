@@ -1,7 +1,7 @@
 node{
       def dockerImageName= '4599/javadedockerapp_$JOB_NAME:$BUILD_NUMBER'
       stage('SCM Checkout'){
-         git 'https://github.com/zafar90/java-groovy-docker.git'          
+         git 'https://github.com/snadimpally/java-groovy-docker.git'        
       }
       stage('Build'){
          // Get maven home path and build 
