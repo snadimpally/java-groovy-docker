@@ -1,5 +1,5 @@
 node{
-      def dockerImageName= 'snadimpally/javadedockerapp_$JOB_NAME:$BUILD_NUMBER'
+      def dockerImageName= '4599/javadedockerapp_$JOB_NAME:$BUILD_NUMBER'
       stage('SCM Checkout'){
          git 'https://github.com/zafar90/java-groovy-docker.git'          
       }
@@ -20,7 +20,7 @@ node{
    
       stage('Publish Docker Image'){
          withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerPWD')]) {
-              sh "docker login -u snadimpally -p ${dockerPWD}"
+              sh "docker login -u 4599 -p ${dockerPWD}"
          }
         sh "docker push ${dockerImageName}"
       }
