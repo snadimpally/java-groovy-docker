@@ -1,4 +1,4 @@
-node{
+node('JenkinsSlave'){
       def dockerImageName= '4599/javadedockerapp_$JOB_NAME:$BUILD_NUMBER'
       stage('SCM Checkout'){
          git 'https://github.com/snadimpally/java-groovy-docker.git'        
@@ -6,12 +6,12 @@ node{
       stage('Build'){
          // Get maven home path and build 
          //def mvnHome =  tool name: 'Maven-3.0.5-17', type: 'Apache'   
-         sh "/usr/share/maven/bin/mvn package -Dmaven.test.skip=true"
+         sh "/opt/maven/bin/mvn package -Dmaven.test.skip=true"
       }       
      
      stage ('Test'){
          //def mvnHome =  tool name: 'Maven-3.0.5-17', type: 'Apache'    
-         sh "/usr/share/maven/bin/mvn verify sleep 3 -Dmaven.test.skip=true"
+         sh "/opt/maven/bin/mvn verify; sleep 3"
       }
       
      stage('Build Docker Image'){         
@@ -31,11 +31,10 @@ node{
             def scriptRunner='sudo ./stopscript.sh'           
             def dockerRun= "sudo docker run -p 8082:8080 -d --name ${dockerContainerName} ${dockerImageName}" 
             withCredentials([string(credentialsId: 'deploymentserverpwd', variable: 'dpPWD')]) {
-                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no ec2-user@3.208.88.243" 
-                  sh "sshpass -p ${dpPWD} scp -r stopscript.sh ec2-user@3.208.88.243:/home/ec2-user" 
-                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no ec2-user@3.208.88.243 ${changingPermission}"
-                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no ec2-user@3.208.88.243 ${scriptRunner}"
-                  sh "sshpass -p ${dpPWD} ssh -o StrictHostKeyChecking=no ec2-user@3.208.88.243 ${dockerRun}"
+                  sh "sudo cp -r stopscript.sh /home/ec2-user" 
+                  sh "${changingPermission}"
+                  sh "${scriptRunner}"
+                  sh "${dockerRun}"
             }
             
       
