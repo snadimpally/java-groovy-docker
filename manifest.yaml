@@ -7,4 +7,4 @@ spec:
    - name: javadockerapp_$JOB_NAME_$BUILD_NUMBER
      image: java-groovy-docker
      ports:
-     - containerPort: 8080
+     - containerPort: 8089
