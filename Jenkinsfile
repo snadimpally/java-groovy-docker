@@ -36,7 +36,7 @@ node('JenkinsSlave'){
                   //sh "${changingPermission}"
                   //sh "${scriptRunner}"
                   //sh "${dockerRun}"
-          sh "kubectl -f manifest.yaml"
+          sh "kubectl apply -f manifest.yaml"
             }
             
       
