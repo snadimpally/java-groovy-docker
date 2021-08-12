@@ -27,16 +27,16 @@ node('JenkinsSlave'){
       }
       
     stage('Run Docker Image'){
-            def dockerContainerName = 'javadockerapp_$JOB_NAME_$BUILD_NUMBER'
-            def changingPermission='sudo chmod +x stopscript.sh'
-            def scriptRunner='sudo ./stopscript.sh'           
-            def dockerRun= "sudo docker run -p 8082:8080 -d --name ${dockerContainerName} ${dockerImageName}" 
-            withCredentials([string(credentialsId: 'deploymentserverpwd', variable: 'dpPWD')]) {
-                  sh "sudo cp -r stopscript.sh /home/ec2-user" 
-                  sh "${changingPermission}"
-                  sh "${scriptRunner}"
-                  sh "${dockerRun}"
-          //sh "kubectl apply -f manifest.yaml"
+            //def dockerContainerName = 'javadockerapp_$JOB_NAME_$BUILD_NUMBER'
+            //def changingPermission='sudo chmod +x stopscript.sh'
+            //def scriptRunner='sudo ./stopscript.sh'           
+            //def dockerRun= "sudo docker run -p 8082:8080 -d --name ${dockerContainerName} ${dockerImageName}" 
+            //withCredentials([string(credentialsId: 'deploymentserverpwd', variable: 'dpPWD')]) {
+                  //sh "sudo cp -r stopscript.sh /home/ec2-user" 
+                  //sh "${changingPermission}"
+                  //sh "${scriptRunner}"
+                  //sh "${dockerRun}"
+          sh "sudo kubectl apply -f manifest.yaml"
             }
             
       
