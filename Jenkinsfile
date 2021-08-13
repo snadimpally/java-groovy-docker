@@ -36,9 +36,14 @@ node('JenkinsSlave'){
                   //sh "${changingPermission}"
                   //sh "${scriptRunner}"
                   //sh "${dockerRun}"
-                  
-                  sh "sudo cp -r /home/ec2-user/cicd"
-                  sh "sudo su - ec2-user kubectl apply -f ~/cicd/manifest.yaml"
+                  #!/bin/sh
+                  sudo su
+                  su ec2-user <<HERE
+                  whoami
+                  echo usr=$USER
+                                   
+                  //sh "sudo su - ec2-user" 
+                  //sh "sudo su - ec2-user kubectl apply -f ~/cicd/manifest.yaml"
                
             }
             
