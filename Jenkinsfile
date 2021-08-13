@@ -37,7 +37,7 @@ node('JenkinsSlave'){
                   //sh "${scriptRunner}"
                   //sh "${dockerRun}"
                   
-                  sh "sudo su ec2-user kubectl apply -f manifest.yaml"
+                  sh "sudo su ec2-user /usr/bin/kubectl apply -f $workspace/manifest.yaml"
                
             }
             
