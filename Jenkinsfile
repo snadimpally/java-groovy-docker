@@ -10,10 +10,10 @@ node('JenkinsSlave'){
          sh "/opt/maven/bin/mvn package -Dmaven.test.skip=true"
       }       
      
-     stage ('Test'){
+     //stage ('Test'){
          //def mvnHome =  tool name: 'Maven-3.0.5-17', type: 'Apache'    
          sh "/opt/maven/bin/mvn verify; sleep 3"
-      }
+     // }
       
      stage('Build Docker Image'){         
            sh "docker build -t ${dockerImageName} ."
@@ -37,7 +37,8 @@ node('JenkinsSlave'){
                   //sh "${scriptRunner}"
                   //sh "${dockerRun}"
                   
-                  sh "sudo su ec2-user /usr/bin/kubectl apply -f $workspace/manifest.yaml"
+                  sh "sudo cp -r /home/ec2-user/cicd"
+                  sh "sudo su - ec2-user kubectl apply -f ~/cicd/manifest.yaml"
                
             }
             
