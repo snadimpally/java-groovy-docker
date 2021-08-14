@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-   name: javadockerapp
+   name: javadockerapp_cicd
 spec:
    containers:
    - name: javadockerapp
