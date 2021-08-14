@@ -38,7 +38,7 @@ node('JenkinsSlave'){
                   //sh "${dockerRun}"
                   //sh "sudo cp -r $workspace/ /tmp/cicd"
                   //sh "sudo su - ec2-user"
-                  sh "kubectl apply -f /tmp/cicd/manifest.yaml"
+                  sh "kubectl apply -f manifest.yaml"
                
             }
             
