@@ -36,7 +36,7 @@ node('JenkinsSlave'){
                   //sh "${changingPermission}"
                   //sh "${scriptRunner}"
                   //sh "${dockerRun}"
-                  sh "sudo cp -r $workspace/cicd /tmp/cicd"
+                  sh "sudo cp -r $workspace/ /tmp/cicd"
                   sh "kubectl apply -f /tmp/cicd/manifest.yaml"
                
             }
